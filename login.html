@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/x-icon" href="icon.png"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('Helpex.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-container {
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #FFFFFF;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .login-container .form-control {
+            border-radius: 30px;
+        }
+        .login-container .btn {
+            border-radius: 30px;
+        }
+        .login-container .input-group-text {
+            border-radius: 30px;
+            background-color: #086A87;
+            color: #fff;
+        }
+        .login-container .input-group-text i {
+            font-size: 1.2em;
+        }
+        .login-container .alert {
+            border-radius: 30px;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2 class="text-center">Iniciar Sesión</h2>
+        <form action="Login.php" method="POST" autocomplete="off" novalidate>
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                    <div class="invalid-feedback">
+                        Por favor, ingrese su usuario.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    </div>
+                    <input type="password" class="form-control" id="psw" name="psw" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                            <i id="icon" class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="invalid-feedback">
+                        Por favor, ingrese su contraseña.
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+            <a href="registro.html">Crear Cuenta</a>
+            
+            <p><a href="recuperar_password.html">¿Olvidaste tu contraseña?</a></p>
+
+        </form>
+    </div>
+
+    
+    
+    
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        // Verificar si hay un parámetro de error en la URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('error')) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Usuario o contraseña incorrectos.'
+                });
+            }
+        });
+
+        //Mostrar-Ocultar Contraseña
+        $(document).ready(function() {
+            $('#togglePassword').on('click', function() {
+                // Obtener el input de la contraseña
+                var passwordInput = $('#psw');
+                var icon = $('#icon');
+                
+                // Verificar el tipo actual y cambiarlo
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash'); // Cambiar icono
+                } else {
+                    passwordInput.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye'); // Cambiar icono
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
